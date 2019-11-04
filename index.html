@@ -320,7 +320,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: radial-gradient(circle, rgba(229, 213, 82, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%);
+		background: radial-gradient(circle, rgb(112, 112, 112) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%);
 	}
 
 	.Circle_light_02 {
@@ -330,7 +330,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: radial-gradient(circle, rgba(229, 213, 82, 1) 0%, rgba(229, 213, 82, 1) 30%, rgba(229, 213, 82, 0) 36%);
+		background: radial-gradient(circle, rgba(112, 112, 112, 1) 0%, rgba(112, 112, 112, 1) 30%, rgba(112, 112, 112, 0) 36%);
 	}
 
 	.Circle_light_03 {
@@ -340,7 +340,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: radial-gradient(circle, rgba(229, 213, 82, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(229, 213, 82, 1) 37%, rgba(229, 213, 82, 0) 70%);
+		background: radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(112, 112, 112, 1) 37%, rgba(112, 112, 112, 0) 70%);
 	}
 
 	.Circle_light_04 {
@@ -350,7 +350,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(229, 213, 82, 1) 15%, rgba(229, 213, 82, 0.1) 50%, rgba(229, 213, 82, 0) 70%);
+		background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(112, 112, 112, 1) 15%, rgba(112, 112, 112, 0.1) 50%, rgba(112, 112, 112, 0) 70%);
 	}
 
 	.Circle_light_05 {
@@ -440,7 +440,7 @@
 			client.on('connect', function () {
 				document.getElementById("status").innerHTML = "ONLINE";
 				document.getElementById("nexpie_button").value = "CONNECTED"
-				document.getElementById("light_status").style["background-color"] =  'rgba(229, 213, 82, 1)';
+				document.getElementById("connect_status").style["background-color"] = 'rgba(229, 213, 82, 1)';
 			});
 
 			client.subscribe("@shadow/data/updated");
@@ -449,7 +449,19 @@
 
 			client.on("message", function (topic, payload) {
 				payload = JSON.parse(payload.toString());
-				// document.getElementById("dot").style["background-color"] = `rgb(${payload.data.r},${payload.data.g},${payload.data.b})`;
+				document.getElementById("light_status").innerHTML = payload.data.status;
+				if (payload.data.status === "OFF") {
+					document.getElementById("Circle_light_01").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%)`;
+					document.getElementById("Circle_light_02").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 0%, rgba(112, 112, 112, 1) 30%, rgba(112, 112, 112, 0) 36%)`;
+					document.getElementById("Circle_light_03").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(112, 112, 112, 1) 37%, rgba(112, 112, 112, 0) 70%)`;
+					document.getElementById("Circle_light_04").style["background"] = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(112, 112, 112, 1) 15%, rgba(112, 112, 112, 0.1) 50%, rgba(112, 112, 112, 0) 70%)`;
+				}
+				else {
+					document.getElementById("Circle_light_01").style["background"] = `radial-gradient(circle, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%)`;
+					document.getElementById("Circle_light_02").style["background"] = `radial-gradient(circle, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 0%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 30%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0) 36%)`;
+					document.getElementById("Circle_light_03").style["background"] = `radial-gradient(circle, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 37%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0) 70%)`;
+					document.getElementById("Circle_light_04").style["background"] = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 15%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0.1) 50%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0) 70%)`;
+				}
 			});
 		}
 	</script>
@@ -466,9 +478,9 @@
 		</div>
 
 		<div class="Circle_light">
-			<div class="Circle_light_01"></div>
-			<div class="Circle_light_02"></div>
-			<div class="Circle_light_03"></div>
+			<div class="Circle_light_01" id="Circle_light_01"></div>
+			<div class="Circle_light_02" id="Circle_light_02"></div>
+			<div class="Circle_light_03" id="Circle_light_03"></div>
 			<div class="light"><img src="lightall.png"></div>
 		</div>
 
@@ -476,8 +488,8 @@
 		<div class="bg-light"><img src="light.png"></div>
 
 		<div class="Circle_light">
-			<div class="status_light">ON</div>
-			<div class="Circle_light_04"></div>
+			<div class="status_light" id="light_status">OFF</div>
+			<div class="Circle_light_04" id="Circle_light_04"></div>
 			<div class="Circle_light_05"><img src="light_w.png"></div>
 		</div>
 
@@ -499,7 +511,7 @@
 				<div class="header">
 					<div class="icon">
 						<div class="img">
-							<div class="icon_light" id="light_status"></div>
+							<div class="icon_light" id="connect_status"></div>
 							<img src="icon_light.png">
 						</div>
 						<div class="status">
