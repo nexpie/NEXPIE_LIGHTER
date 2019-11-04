@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	body,
+	ul {
+		padding: 0;
+		margin: 0;
+		font-family: "Montserrat";
+		color: rgb(255, 255, 255);
+	}
+
+	img {
+		width: 100%;
+	}
+
+	.main {
+		width: 50%;
+		height: 100vh;
+		position: absolute;
+		left: 0;
+		top: 0;
+		padding-left: 4%;
+	}
+
+	.main .logo {
+		width: 100%;
+		height: 10vh;
+	}
+
+	.main .logo .menu {
+		width: 60px;
+		height: 100%;
+		padding: 15px;
+		box-sizing: border-box;
+		float: left;
+	}
+
+	.main .logo .img {
+		width: 150px;
+		height: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+		float: left;
+	}
+
+	.main .detail {
+		width: 100%;
+		height: 90vh;
+	}
+
+	.main .detail .list {
+		width: 60px;
+		height: 100%;
+		padding-top: 30%;
+		box-sizing: border-box;
+		float: left;
+	}
+
+	.main .detail .list ul li {
+		width: 12px;
+		height: 12px;
+		background-color: #fff;
+		border-radius: 50%;
+		margin: 25% auto;
+		text-align: center;
+		list-style: none;
+	}
+
+	.content {
+		width: 100vw;
+		height: 100vh;
+		background-color: rgb(0, 78, 233);
+		float: right;
+		position: relative;
+
+	}
+
+	.header {
+		width: 80%;
+		height: auto;
+		/*background-color: green;*/
+		padding: 7%;
+		box-sizing: border-box;
+		float: left;
+	}
+
+	.header .title h1 {
+		font-size: 36px;
+		color: rgb(254, 204, 85);
+		font-weight: bold;
+		line-height: 0.333;
+	}
+
+	.header .title p {
+		font-size: 14px;
+		line-height: 1.2;
+	}
+
+	.header .icon {
+		margin-bottom: 50px;
+	}
+
+	.header .icon .icon_light {
+		width: 50px;
+		height: 50px;
+		background-color: #333;
+		border-radius: 100%;
+	}
+
+	.header .icon .img {
+		width: 50px;
+		height: 70px;
+		/*background-color: #fff ;*/
+		margin-right: 23px;
+		float: left;
+		position: relative;
+	}
+
+	.header .icon .img img {
+		position: absolute;
+		width: 100%;
+		top: 0;
+	}
+
+	.header .icon h5 {
+		font-size: 18px;
+		line-height: 1.111;
+		margin: 10px;
+	}
+
+	.header .icon p {
+		font-size: 10px;
+		line-height: 1.111;
+		font-weight: bold;
+	}
+
+	.footer {
+		width: 50%;
+		height: auto;
+		padding-left: 10%;
+		position: absolute;
+		left: 50%;
+		top: 95%;
+		transform: translate(-50%, -50%);
+	}
+
+	.footer .detail {
+		width: 33.33%;
+		height: 20px;
+		float: left;
+	}
+
+	.footer .detail .icon {
+		width: 20px;
+		height: 20px;
+		margin-right: 0.5rem;
+		float: left;
+	}
+
+	.footer .detail .text {
+		float: left;
+		color: #fff;
+		font-size: 12px;
+		color: rgb(255, 255, 255);
+		line-height: 1;
+		text-align: left;
+		padding: 0.25rem;
+	}
+
+	.wrap-input100 {
+		width: 100%;
+		position: relative;
+		border-bottom: 2px solid #d9d9d9;
+		margin-bottom: 23px;
+	}
+
+	.label-input100 {
+		font-size: 10px;
+		line-height: 1.2;
+	}
+
+	.input100 {
+		font-size: 16px;
+		line-height: 1.2;
+		display: block;
+		width: 100%;
+		height: 40px;
+		background: transparent;
+		padding: 0 7px;
+		font-family: "Montserrat";
+		color: rgb(255, 255, 255);
+	}
+
+	input {
+		outline: none;
+		border: none;
+	}
+
+	::placeholder {
+		color: #000;
+		opacity: 0.3;
+		/* Firefox */
+	}
+
+	.login {
+		width: 80%;
+	}
+
+	.login .menu {
+		width: 30%;
+		height: 5vh;
+		margin: 20% 35%;
+	}
+
+	.login h3 {
+		width: 100%;
+		font-size: 16px;
+		font-weight: bold;
+		margin-top: 10%;
+	}
+
+	.login100-form-btn {
+		font-size: 16px;
+		color: #fff;
+		line-height: 1.2;
+
+		padding: 0 20px;
+		width: 100%;
+		height: 50px;
+		background-color: rgb(254, 204, 85);
+		box-shadow: 0px 5px 7.6px 0.4px rgba(0, 0, 0, 0.15);
+		border-radius: 25px;
+		outline: none !important;
+		border: none;
+		font-weight: bold;
+
+	}
+
+	.status_light {
+		width: 87px;
+		padding: 7px 0;
+		box-sizing: border-box;
+		text-align: center;
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 1.2;
+		background-color: rgb(253, 127, 25);
+		box-shadow: 0px 5px 6.65px 0.35px rgba(12, 73, 197, 0.2);
+		border-radius: 15px;
+		position: absolute;
+		transform: translate(-50%, -50%);
+		top: 10%;
+		left: 40%;
+	}
+
+	.Circle {
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.Circle_bg_01 {
+		clip-path: circle(70% at 70% 50%);
+		background-color: rgb(0, 72, 215);
+		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+	}
+
+	.Circle_bg_02 {
+		clip-path: circle(50% at 70% 50%);
+		background-color: rgb(0, 69, 206);
+	}
+
+	.Circle_bg_03 {
+		clip-path: circle(35% at 70% 50%);
+		background-color: rgb(0, 61, 184);
+		box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
+	}
+
+	.Circle_bg_04 {
+		clip-path: circle(25% at 70% 50%);
+		background-color: rgb(0, 57, 171);
+		box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.25);
+	}
+
+	.bg-light {
+		width: 13%;
+		height: auto;
+		/*background-color: #333;*/
+		position: absolute;
+		top: 0;
+		left: 28%;
+		opacity: 0.5;
+	}
+
+	.light {
+		width: 60%;
+		height: auto;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -15%);
+	}
+
+	.Circle_light {
+		width: 550px;
+		height: 550px;
+		position: absolute;
+		top: 12%;
+		left: 70%;
+		transform: translateX(-50%);
+	}
+
+	.Circle_light_01 {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle, rgba(229, 213, 82, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%);
+	}
+
+	.Circle_light_02 {
+		width: 60%;
+		height: 60%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle, rgba(229, 213, 82, 1) 0%, rgba(229, 213, 82, 1) 30%, rgba(229, 213, 82, 0) 36%);
+	}
+
+	.Circle_light_03 {
+		width: 50%;
+		height: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle, rgba(229, 213, 82, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(229, 213, 82, 1) 37%, rgba(229, 213, 82, 0) 70%);
+	}
+
+	.Circle_light_04 {
+		width: 40%;
+		height: 40%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(229, 213, 82, 1) 15%, rgba(229, 213, 82, 0.1) 50%, rgba(229, 213, 82, 0) 70%);
+	}
+
+	.Circle_light_05 {
+		width: 30%;
+		height: 30%;
+		position: absolute;
+		top: 50%;
+		left: 45%;
+		transform: translate(-50%, -50%);
+	}
+
+	@media (max-width: 991.98px) {
+		.footer {
+			width: 80%;
+		}
+
+		.main {
+			width: 60%;
+			padding-left: 2%;
+		}
+
+		.main .detail .list {
+			padding-top: 50%;
+		}
+
+		.bg-light {
+			left: 35%;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.main .detail .list {
+			display: none;
+		}
+
+		.Circle_light {
+			width: 320px;
+			height: 320px;
+			top: 8%;
+			left: 60%;
+		}
+
+		.main {
+			width: 100%;
+			padding-left: 0;
+		}
+
+		.status_light {
+			width: 50px;
+			font-size: 14px;
+		}
+
+		.header {
+			width: 100%;
+		}
+
+		.show {
+			display: none;
+		}
+
+		.login {
+			width: 100%;
+			margin-top: 70%;
+		}
+	}
+</style>
+
+<body>
+	<script src="https://unpkg.com/mqtt@3.0.0/dist/mqtt.min.js"></script>
+	<script>
+		function nexpie_connect() {
+			var deviceid = document.getElementById("deviceid").value;
+			var devicetoken = document.getElementById("devicetoken").value;
+
+			var options = {
+				host: 'mqtt.nexpie.io',
+				port: 80,
+				path: '/mqtt',
+				clientId: deviceid,
+				protocolId: 'MQTT',
+				username: devicetoken,
+				// clientId: 'cb762459-a6ec-499f-a172-309dbb8a238b',
+				// username: 'zRxQN3gBP72CauJYEBtCnz8XH81tnUB4'
+			};
+			var client = mqtt.connect(options);
+
+			client.on('connect', function () {
+				document.getElementById("status").innerHTML = "ONLINE";
+				document.getElementById("nexpie_button").value = "CONNECTED"
+			});
+
+			client.subscribe("@shadow/data/updated");
+			client.subscribe("@private/#");
+			client.publish("@shadow/data/get");
+
+			client.on("message", function (topic, payload) {
+				payload = JSON.parse(payload.toString());
+				// document.getElementById("dot").style["background-color"] = `rgb(${payload.data.r},${payload.data.g},${payload.data.b})`;
+			});
+		}
+	</script>
+
+	<div class="content">
+
+		<div class="Circle Circle_bg_01">
+			<div class="Circle Circle_bg_02">
+				<div class="Circle Circle_bg_03">
+					<div class="Circle Circle_bg_04"></div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="Circle_light">
+			<div class="Circle_light_01"></div>
+			<div class="Circle_light_02"></div>
+			<div class="Circle_light_03"></div>
+			<div class="light"><img src="lightall.png"></div>
+		</div>
+
+
+		<div class="bg-light"><img src="light.png"></div>
+
+		<div class="Circle_light">
+			<div class="status_light">ON</div>
+			<div class="Circle_light_04"></div>
+			<div class="Circle_light_05"><img src="light_w.png"></div>
+		</div>
+
+		<div class="main">
+			<div class="logo">
+				<div class="menu"><img src="menu.png"></div>
+				<div class="img"><img src="logo.png"></div>
+			</div>
+			<div class="detail">
+				<div class="list">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<div class="header">
+					<div class="icon">
+						<div class="img">
+							<div class="icon_light"></div>
+							<img src="icon_light.png">
+						</div>
+						<div class="status">
+							<h5 class="title" id="status">OFFLINE</h5>
+							<p class="text">DEVICE STATUS</p>
+						</div>
+					</div>
+					<div class="title show">
+						<h1>LOREM LPSM</h1>
+						<p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit, sed do eius</p>
+					</div>
+					<div class="login">
+						<h3>DEVICE CONNENT</h3>
+						<form class="login100-form validate-form">
+							<div class="wrap-input100">
+								<span class="label-input100">Device ID</span>
+								<input id="deviceid" class="input100" type="text" name="test"
+									placeholder="Type your Device ID">
+							</div>
+
+							<div class="wrap-input100">
+								<span class="label-input100">Device Token</span>
+								<input id="devicetoken" class="input100" type="text" name="test"
+									placeholder="Type your Device Token">
+							</div>
+							<input type="button" class="login100-form-btn" onclick="nexpie_connect()" value="CONNECT"
+								id="nexpie_button"></button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		<div class="detail">
+			<div class="icon"><img src="footericon01.png"></div>
+			<a class="text" href="https://nexpie.com/">www.nexpie.com</a>
+		</div>
+		<div class="detail">
+			<div class="icon"><img src="footericon02.png"></div>
+			<span class="text">contact@nexpie.com</span>
+		</div>
+		<div class="detail">
+			<div class="icon"><img src="footericon03.png"></div>
+			<span class="text">+661-422-3142</span>
+		</div>
+	</div>
+</body>
+
+</html>
