@@ -440,6 +440,7 @@
 			client.on('connect', function () {
 				document.getElementById("status").innerHTML = "ONLINE";
 				document.getElementById("nexpie_button").value = "CONNECTED"
+				document.getElementById("light_status").style["background-color"] =  'rgba(229, 213, 82, 1)';
 			});
 
 			client.subscribe("@shadow/data/updated");
@@ -498,7 +499,7 @@
 				<div class="header">
 					<div class="icon">
 						<div class="img">
-							<div class="icon_light"></div>
+							<div class="icon_light" id="light_status"></div>
 							<img src="icon_light.png">
 						</div>
 						<div class="status">
