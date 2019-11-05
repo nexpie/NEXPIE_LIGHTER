@@ -446,9 +446,10 @@
 			console.log('function nexpie connect');
 			var deviceid = document.getElementById("deviceid").value;
 			var devicetoken = document.getElementById("devicetoken").value;
+			var broker_url = document.getElementById("broker_url").value;
 
 			var options = {
-				host: 'mqtt.nexpie.io',
+				host: broker_url,
 				port: 443,
 				path: '/mqtt',
 				clientId: deviceid,
@@ -557,6 +558,12 @@
 					<div class="login">
 						<h3>DEVICE CONNENT</h3>
 						<form class="login100-form validate-form">
+							<div class="wrap-input100">
+								<span class="label-input100">MQTT URL</span>
+								<input id="broker_url" class="input100" type="text" name="test"
+									placeholder="Enter MQTT Url" value="mqtt.nexpie.io">
+							</div>
+
 							<div class="wrap-input100">
 								<span class="label-input100">Device ID</span>
 								<input id="deviceid" class="input100" type="text" name="test"
