@@ -422,22 +422,29 @@
 	<script src="https://unpkg.com/mqtt@3.0.0/dist/mqtt.min.js"></script>
 	<script>
 		function nexpie_connect() {
+			console.log('debug');
+			console.log('function nexpie connect');
 			var deviceid = document.getElementById("deviceid").value;
 			var devicetoken = document.getElementById("devicetoken").value;
 
 			var options = {
 				host: 'mqtt.nexpie.io',
-				port: 80,
+				port: 443,
 				path: '/mqtt',
 				clientId: deviceid,
 				protocolId: 'MQTT',
 				username: devicetoken,
+				protocol: 'wss'
 				// clientId: 'cb762459-a6ec-499f-a172-309dbb8a238b',
 				// username: 'zRxQN3gBP72CauJYEBtCnz8XH81tnUB4'
 			};
 			var client = mqtt.connect(options);
+			console.log('debug');
+			console.log(client);
 
 			client.on('connect', function () {
+				console.log('debug');
+				console.log('connected');
 				document.getElementById("status").innerHTML = "ONLINE";
 				document.getElementById("nexpie_button").value = "CONNECTED"
 				document.getElementById("connect_status").style["background-color"] = 'rgba(229, 213, 82, 1)';
