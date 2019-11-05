@@ -446,10 +446,12 @@
 			console.log('function nexpie connect');
 			var deviceid = document.getElementById("deviceid").value;
 			var devicetoken = document.getElementById("devicetoken").value;
+			var broker_url = document.getElementById("broker_url").value;
+			var port_mqtt = document.getElementById("port_mqtt").value;
 
 			var options = {
-				host: 'mqtt.nexpie.io',
-				port: 443,
+				host: broker_url,
+				port: port_mqtt,
 				path: '/mqtt',
 				clientId: deviceid,
 				protocolId: 'MQTT',
@@ -467,7 +469,7 @@
 				console.log('connected');
 				document.getElementById("status").innerHTML = "ONLINE";
 				document.getElementById("nexpie_button").value = "CONNECTED"
-				document.getElementById("nexpie_button").style["background-color"] = "rgb(0, 61, 184)"
+				document.getElementById("nexpie_button").style["background-color"] = "rgb(245, 17, 17)"
 				document.getElementById("connect_status").style["background-color"] = 'rgba(229, 213, 82, 1)';
 			});
 
@@ -557,6 +559,18 @@
 					<div class="login">
 						<h3>DEVICE CONNENT</h3>
 						<form class="login100-form validate-form">
+							<div class="wrap-input100">
+								<span class="label-input100">MQTT URL</span>
+								<input id="broker_url" class="input100" type="text" name="test"
+									placeholder="Enter MQTT Url" value="jupiter.scg.com">
+							</div>
+							
+							<div class="wrap-input100">
+								<span class="label-input100">PORT</span>
+								<input id="port_mqtt" class="input100" type="text" name="test"
+									placeholder="Enter Port" value="8084">
+							</div>
+
 							<div class="wrap-input100">
 								<span class="label-input100">Device ID</span>
 								<input id="deviceid" class="input100" type="text" name="test"
