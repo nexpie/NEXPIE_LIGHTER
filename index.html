@@ -447,10 +447,11 @@
 			var deviceid = document.getElementById("deviceid").value;
 			var devicetoken = document.getElementById("devicetoken").value;
 			var broker_url = document.getElementById("broker_url").value;
+			var port_mqtt = document.getElementById("port_mqtt").value;
 
 			var options = {
 				host: broker_url,
-				port: 443,
+				port: port_mqtt,
 				path: '/mqtt',
 				clientId: deviceid,
 				protocolId: 'MQTT',
@@ -561,7 +562,13 @@
 							<div class="wrap-input100">
 								<span class="label-input100">MQTT URL</span>
 								<input id="broker_url" class="input100" type="text" name="test"
-									placeholder="Enter MQTT Url" value="mqtt.nexpie.io">
+									placeholder="Enter MQTT Url" value="jupiter.scg.com">
+							</div>
+							
+							<div class="wrap-input100">
+								<span class="label-input100">PORT</span>
+								<input id="port_mqtt" class="input100" type="text" name="test"
+									placeholder="Enter Port" value="8084">
 							</div>
 
 							<div class="wrap-input100">
