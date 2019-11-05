@@ -421,6 +421,26 @@
 <body>
 	<script src="https://unpkg.com/mqtt@3.0.0/dist/mqtt.min.js"></script>
 	<script>
+		var client;
+
+		function light_status_change() {
+			var status = "OFF";
+			if (document.getElementById("light_status").innerHTML === "OFF") {
+				status = "ON"
+			}
+			var light_status = {
+				"data": {
+					"status": status
+				}
+			}
+			try {
+				client.publish("@shadow/data/update", JSON.stringify(light_status));
+			}
+			catch (error) {
+				console.log('please, log in before');
+			}
+		}
+
 		function nexpie_connect() {
 			console.log('debug');
 			console.log('function nexpie connect');
@@ -438,7 +458,7 @@
 				// clientId: 'cb762459-a6ec-499f-a172-309dbb8a238b',
 				// username: 'zRxQN3gBP72CauJYEBtCnz8XH81tnUB4'
 			};
-			var client = mqtt.connect(options);
+			client = mqtt.connect(options);
 			console.log('debug');
 			console.log(client);
 
@@ -456,18 +476,21 @@
 
 			client.on("message", function (topic, payload) {
 				payload = JSON.parse(payload.toString());
-				document.getElementById("light_status").innerHTML = payload.data.status;
-				if (payload.data.status === "OFF") {
-					document.getElementById("Circle_light_01").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%)`;
-					document.getElementById("Circle_light_02").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 0%, rgba(112, 112, 112, 1) 30%, rgba(112, 112, 112, 0) 36%)`;
-					document.getElementById("Circle_light_03").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(112, 112, 112, 1) 37%, rgba(112, 112, 112, 0) 70%)`;
-					document.getElementById("Circle_light_04").style["background"] = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(112, 112, 112, 1) 15%, rgba(112, 112, 112, 0.1) 50%, rgba(112, 112, 112, 0) 70%)`;
-				}
-				else {
+				document.getElementById("light_status").innerHTML = payload.data.status === "ON" ? "ON" : "OFF";
+				if (payload.data.status === "ON" && payload.data.rgb) {
 					document.getElementById("Circle_light_01").style["background"] = `radial-gradient(circle, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%)`;
 					document.getElementById("Circle_light_02").style["background"] = `radial-gradient(circle, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 0%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 30%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0) 36%)`;
 					document.getElementById("Circle_light_03").style["background"] = `radial-gradient(circle, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 37%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0) 70%)`;
 					document.getElementById("Circle_light_04").style["background"] = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 1) 15%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0.1) 50%, rgba(${payload.data.rgb.r},${payload.data.rgb.g},${payload.data.rgb.b}, 0) 70%)`;
+				}
+				else if (payload.data.status === "ON") {
+					client.publish("@shadow/data/get");
+				}
+				else {
+					document.getElementById("Circle_light_01").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0) 65%)`;
+					document.getElementById("Circle_light_02").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 0%, rgba(112, 112, 112, 1) 30%, rgba(112, 112, 112, 0) 36%)`;
+					document.getElementById("Circle_light_03").style["background"] = `radial-gradient(circle, rgba(112, 112, 112, 1) 30%, rgba(255, 255, 255, 0.8) 34%, rgba(112, 112, 112, 1) 37%, rgba(112, 112, 112, 0) 70%)`;
+					document.getElementById("Circle_light_04").style["background"] = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(112, 112, 112, 1) 15%, rgba(112, 112, 112, 0.1) 50%, rgba(112, 112, 112, 0) 70%)`;
 				}
 			});
 		}
@@ -495,7 +518,7 @@
 		<div class="bg-light"><img src="light.png"></div>
 
 		<div class="Circle_light">
-			<div class="status_light" id="light_status">OFF</div>
+			<div class="status_light" id="light_status" onclick="light_status_change()">OFF</div>
 			<div class="Circle_light_04" id="Circle_light_04"></div>
 			<div class="Circle_light_05"><img src="light_w.png"></div>
 		</div>
